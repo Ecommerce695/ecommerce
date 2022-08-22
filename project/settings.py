@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-sy)44!przvkk6&lh!xxtrnh48o(xhobsi5r@wvr4%iqtg%n7=f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['50.18.24.167','127.0.0.1','localhost',]
 
 
 # Application definition
@@ -40,7 +40,15 @@ INSTALLED_APPS = [
     'app',
     'rest_framework',
     'knox',
+    'corsheaders',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_WHITELIST = (
+#   'http://50.18.24.167:80',
+#   'http://127.0.0.1',
+# )
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -50,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -141,3 +150,28 @@ REST_FRAMEWORK = {
         'knox.auth.TokenAuthentication',
     ]
 }
+
+SECURE_CROSS_ORIGIN_OPENER_POLICY=None
+
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'OPTIONS',
+    'PATCH',
+    'GET',
+    'POST',
+    'PUT',  
+]
+
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
